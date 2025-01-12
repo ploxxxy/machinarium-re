@@ -1,41 +1,28 @@
-# Machinarium Reverse Engineered
-A collection of tools and scripts to extract files and various data from Machinarium The Definitive Edition mysterious .jpg files
+<img align="left" src="https://github.com/user-attachments/assets/de2d09a6-3977-4df2-aac7-767db4fa2130" />
+<h1>Machinarium Reverse Engineered</h1>
+<p>A collection of tools and scripts to extract files and various data from Machinarium The Definitive Edition mysterious .jpg files</p>
+<br clear="left"/>
 
 ## get_level_hash
 The game uses hardcoded values (music, shared, startup, etc), which are then hashed to load the actual files (7005.jpg, etc), located in `Machinarium/arch_<platform>/xxxxx.jpg`. 
 
 All files accessed by the game:
-```yaml
-music: 7005
-shared: 13516
-startup: 29625
-level00intromenu: 14727510
-level01: 16621
-level02: 16750
-level03: 16879
-level04: 17008
-level05: 17137
-level06: 17266
-level07: 17395
-level08: 17524
-level09: 17653
-level10: 16557
-level11: 16686
-level12: 16815
-level13: 16944
-level14: 17073
-level15: 17202
-level16: 17331
-level17: 17460
-level18: 17589
-level19: 17718
-level20: 16622
-level21: 16751
-level22: 16880
-level23: 17009
-level24: 17138
-level25: 17267
-level26: 17396
+```js
+music:    7005     shared:              13516
+startup: 29625     level00intromenu: 14727510
+level01: 16621     level02:             16750
+level03: 16879     level04:             17008
+level05: 17137     level06:             17266
+level07: 17395     level08:             17524
+level09: 17653     level10:             16557
+level11: 16686     level12:             16815
+level13: 16944     level14:             17073
+level15: 17202     level16:             17331
+level17: 17460     level18:             17589
+level19: 17718     level20:             16622
+level21: 16751     level22:             16880
+level23: 17009     level24:             17138
+level25: 17267     level26:             17396
 level27: 17525
 ```
 
