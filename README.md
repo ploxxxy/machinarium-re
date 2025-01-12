@@ -2,7 +2,7 @@
 A collection of tools and scripts to extract files and various data from Machinarium The Definitive Edition mysterious .jpg files
 
 ## get_level_hash
-Implementation of the hashing algorithm used by the game to get the filename of a level (located in `Machinarium/arch_<platform>/xxxxx.jpg`)
+The game uses hardcoded values (music, shared, startup, etc), which are then hashed to load the actual files (7005.jpg, etc), located in `Machinarium/arch_<platform>/xxxxx.jpg`. 
 
 All files accessed by the game:
 ```yaml
@@ -41,15 +41,18 @@ level27: 17525
 
 
 ## decode_level_file
-Implementation of the decoding algorithm used by the game to store multiple files inside a single level archive
+Implementation of the decoding algorithm for the archives used in the game for loading levels and other data
 
 Includes various checks performed by the game during the decoding process 
 
 The processed file will have following format:
-- a 48kiB header, mostly empty, but periodically has (from my understanding) `unknown` (4 bytes) + `offset` (4 bytes) + `size` (4 bytes) information about the files stored in the archive
+- a 48kiB header, mostly empty, with peridocal pointers to the archive data
 - the payload, which contains multiple files, padded to be divisble by 32
-- 16 byte header with the `unknown flag` (4 bytes), `file size` (4 bytes), `checksum` (4 bytes) + `unknown value` (4 bytes) information
+- 16 byte footer with the `unknown flag` (4 bytes), `file size` (4 bytes), `checksum` (4 bytes) + `unknown value` (4 bytes) information
 
----
+## extract_level_files
+Educated guess on how to extract level files from the game's data files, since I haven't actually found the extraction logic in the code yet.
 
-Next step is to process the archive, extract the files and figure out their respective filenames
+My implementation walks through the header and extracts "pointers" (`unknown` (most likely a checksum) of 4 bytes + `offset` of 4 bytes + `size` of 4 bytes) to the actual files located in the payload. 
+
+Most likely it is impossible to determine the file names just from the archive files, as they share similarities in loading logic with level archives.
